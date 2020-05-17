@@ -1,0 +1,76 @@
+color=#f4f4f5
+separator_block_width=20
+markup=none
+
+[cpu]
+command=/home/akash/.local/src/i3blocks-contrib/cpu_ghz/script.sh
+interval=1s
+color=#14e6cd
+
+[bandwidth]
+command=/home/akash/.local/src/i3blocks-contrib/bandwidth2/bandwidth2
+interval=persist
+markup=pango
+LABEL=
+WARN_RX=307201
+WARN_TX=30720
+CRIT_RX=512000
+CRIT_TX=51200
+
+[ip]
+command=echo -n ''; ip -o route get to 8.8.8.8 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'
+interval=20
+color=#ffcc00
+
+#[volume-pulseaudio]
+#command=~/.local/src/i3blocks-contrib/volume-pulseaudio/volume-pulseaudio
+#interval=1
+#signal=10
+#LONG_FORMAT="${SYMB}${VOL}%"
+#SHORT_FORMAT="${SYMB}${VOL}%"
+#DEFAULT_COLOR="#f3f4f5"
+#USE_ALSA_NAME=1
+
+[ram]
+command=echo -n '  '; ~/.local/src/i3blocks-contrib/memory/memory | grep -E -o '^[0-9]+.[0-9]G'
+interval=30
+
+[rofi-calendar]
+command=~/.local/src/iblocks-contrib/rofi-calendar/rofi-calendar
+interval=6
+
+# Guess the weather hourly
+[weather]
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+interval=3600
+color=#A4C2F4
+
+[battery]
+command=~/.local/src/i3blocks-contrib/battery-info/script.sh
+interval=1
+color=teal
+markup=pango
+
+# Update time every 5 seconds
+[time]
+command=date +"%r"
+interval=6
+
+[batterybar]
+command=~/.local/src/iblocks-contrib/battery/battery
+label=bat:
+interval=5
+markup=pango
+min_width=bat: ■■■■■
+#Discharging colors low to high
+C1=#FF0027
+C2=#FF3B05
+C3=#FFB923
+C4=#FFD000
+C5=#E4FF00
+C6=#ADFF00
+C7=#6DFF00
+C8=#10BA00
+CHARGING_COLOR=#00AFE3
+FULL_COLOR=#FFFFFF
+AC_COLOR=#535353
